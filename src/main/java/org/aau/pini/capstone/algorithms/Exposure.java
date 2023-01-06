@@ -1,8 +1,17 @@
+/**
+ * @author Marcelino Patrick Pini - mpini21@student.aau.dk
+ */
+
 package org.aau.pini.capstone.algorithms;
 
 import java.awt.*;
 
 public class Exposure extends ImageAlgorithm {
+    Exposure() {
+        this.name = "Exposure";
+        this.minimumFactor = -1;
+        this.maximumFactor = 1;
+    }
     @Override
     public int calculateRed(Color color) {
         return checkColorValueRange(color.getRed() * (factor + 1));
