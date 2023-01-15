@@ -17,11 +17,12 @@ class FileIOTest {
 
     @Test
     void testImportFixedImage() {
+        FileIO fileIO = new FileIO();
         File validPngFile = new File("src/test/resources/images/4.2.07.png");
         try {
             assertTrue(validPngFile.exists());
 
-            Image image = FileIO.importImage(validPngFile);
+            Image image = fileIO.importImage(validPngFile);
             assertNotNull(image);
             assertEquals(512, image.getWidth());
             assertEquals(512, image.getHeight());

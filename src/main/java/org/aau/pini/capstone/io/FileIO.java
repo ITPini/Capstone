@@ -21,7 +21,8 @@ public class FileIO {
      * @return - The imported image. Null if no file was selected.
      * @throws FileNotFoundException - If the file does not exist.
      */
-    public static Image importImage(File file) throws FileNotFoundException {
+    // TODO: This should be not be static method
+    public Image importImage(File file) throws FileNotFoundException {
 
         if (file != null){
             return new Image(new FileInputStream(file));

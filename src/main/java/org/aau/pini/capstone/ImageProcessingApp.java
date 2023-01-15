@@ -1,3 +1,7 @@
+/**
+ * @author Marcelino Patrick Pini - mpini21@student.aau.dk
+ */
+
 package org.aau.pini.capstone;
 
 import javafx.application.Application;

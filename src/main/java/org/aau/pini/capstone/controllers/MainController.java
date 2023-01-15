@@ -70,7 +70,7 @@ public class MainController implements Initializable {
         }
 
         try {
-            setImage(FileIO.importImage(file));
+            setImage(fileIO.importImage(file));
             imageView.setImage(image);
             setMetaDataLabelText((int) image.getWidth(), (int) image.getHeight());
         } catch (FileNotFoundException e) {

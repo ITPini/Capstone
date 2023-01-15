@@ -5,7 +5,7 @@
 package org.aau.pini.capstone.algorithms;
 
 import java.awt.*;
-
+// TODO: Change to no modifier
 public interface ColorAlgorithm {
     /**
      * Calculates the red value of the new color.
