@@ -1,16 +1,15 @@
+package org.aau.pini.capstone.algorithms;
+
+import java.awt.Color;
+
 /**
  * @author Marcelino Patrick Pini - mpini21@student.aau.dk
  */
-
-package org.aau.pini.capstone.algorithms;
-
-import java.awt.*;
-
-public class RemoveRed extends ImageAlgorithm {
+class RemoveRed extends ImageAlgorithm {
     RemoveRed() {
-        this.name = "Remove Red Color Channel";
-        this.minimumFactor = 0;
-        this.maximumFactor = 1;
+        super.name = "Remove Red Color Channel";
+        super.minimumFactor = 0;
+        super.maximumFactor = 1;
     }
 
     @Override

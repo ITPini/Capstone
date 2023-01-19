@@ -1,16 +1,15 @@
+package org.aau.pini.capstone.algorithms;
+
+import java.awt.Color;
+
 /**
  * @author Marcelino Patrick Pini - mpini21@student.aau.dk
  */
-
-package org.aau.pini.capstone.algorithms;
-
-import java.awt.*;
-
-public class Invert extends ImageAlgorithm {
+class Invert extends ImageAlgorithm {
     Invert() {
-        this.name = "Invert";
-        this.minimumFactor = 0;
-        this.maximumFactor = 1;
+        super.name = "Invert";
+        super.minimumFactor = 0;
+        super.maximumFactor = 1;
     }
     @Override
     public int calculateRed(Color color) {

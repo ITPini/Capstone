@@ -1,16 +1,15 @@
+package org.aau.pini.capstone.algorithms;
+
+import java.awt.Color;
+
 /**
  * @author Marcelino Patrick Pini - mpini21@student.aau.dk
  */
-
-package org.aau.pini.capstone.algorithms;
-
-import java.awt.*;
-
-public class Greyscale extends ImageAlgorithm {
+class Greyscale extends ImageAlgorithm {
     Greyscale() {
-        this.name = "Greyscale";
-        this.minimumFactor = -1;
-        this.maximumFactor = 1;
+        super.name = "Greyscale";
+        super.minimumFactor = -1;
+        super.maximumFactor = 1;
     }
     @Override
     public int calculateRed(Color color) {
