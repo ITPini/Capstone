@@ -1,7 +1,3 @@
-/**
- * @author Marcelino Patrick Pini - mpini21@student.aau.dk
- */
-
 package org.aau.pini.capstone.io;
 
 import javafx.scene.image.Image;
@@ -14,7 +10,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class FileIO {
+/**
+ * @author Marcelino Patrick Pini - mpini21@student.aau.dk
+ */
+public final class FileIO {
 
     /**
      * Imports an image from the file system.
