@@ -4,37 +4,10 @@
 
 package org.aau.pini.capstone.algorithms;
 
-import java.awt.*;
-
 public abstract class ImageAlgorithm implements ColorAlgorithm {
-    // TODO: These could be static final to save memory
-    // TODO: Could be moved to interface
-    protected final int MAX_RGB_VALUE = 255;
-    protected final int MIN_RGB_VALUE = 0;
-
     protected int minimumFactor, maximumFactor;
     protected float factor;
     protected String name;
-
-    // TODO: This might be redundant
-    public ImageAlgorithm() {
-    }
-
-    // TODO: These methods could be moved to interface and made default
-    @Override
-    public int calculateRed(Color color) {
-        return color.getRed();
-    }
-
-    @Override
-    public int calculateGreen(Color color) {
-        return color.getGreen();
-    }
-
-    @Override
-    public int calculateBlue(Color color) {
-        return color.getBlue();
-    }
 
     /**
      * Checks if the color value is within the range of minimumFactor & maximumFactor
@@ -76,31 +49,31 @@ public abstract class ImageAlgorithm implements ColorAlgorithm {
         this.factor = checkFactorRange(factor);
     }
 
-    public void setName(String name) {
+    public final void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
-    public float getFactor() {
+    public final float getFactor() {
         return factor;
     }
 
-    public void setMinimumFactor(int minimumFactor) {
+    public final void setMinimumFactor(int minimumFactor) {
         this.minimumFactor = minimumFactor;
     }
 
-    public void setMaximumFactor(int maximumFactor) {
+    public final void setMaximumFactor(int maximumFactor) {
         this.maximumFactor = maximumFactor;
     }
 
-    public int getMinimumFactor() {
+    public final int getMinimumFactor() {
         return minimumFactor;
     }
 
-    public int getMaximumFactor() {
+    public final int getMaximumFactor() {
         return maximumFactor;
     }
 
@@ -108,9 +81,8 @@ public abstract class ImageAlgorithm implements ColorAlgorithm {
      * Overrides the toString method of ListView class to display the name of the algorithm
      * @return - The name of the algorithm
      */
-    // TODO: Could use final to prevent overriding
     @Override
-    public String toString() {
+    public final String toString() {
         return name;
     }
 }
