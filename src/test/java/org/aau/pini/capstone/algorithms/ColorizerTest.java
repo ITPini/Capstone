@@ -10,19 +10,20 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author Marcelino Patrick Pini - mpini21@student.aau.dk
  */
-class RemoveRedGreenTest implements AlgorithmTest {
-    private static final ImageAlgorithm imageAlgorithm = new RemoveRedGreen();
-    private final Color color = new Color(77, 169, 67);
+class ColorizerTest implements AlgorithmTest {
+
+    private static final ImageAlgorithm imageAlgorithm = new Colorizer();
+    private final Color color = new Color(98, 50, 89);
 
     @BeforeAll
     static void beforeAll() {
-        imageAlgorithm.setFactor(1);
+        imageAlgorithm.setFactor(0.3f);
     }
 
     @Override @Test
     public void testAlgorithmWithFixedValues() {
-        assertEquals(0, imageAlgorithm.calculateRed(color));
+        assertEquals(76, imageAlgorithm.calculateRed(color));
         assertEquals(0, imageAlgorithm.calculateGreen(color));
-        assertEquals(67, imageAlgorithm.calculateBlue(color));
+        assertEquals(0, imageAlgorithm.calculateBlue(color));
     }
 }

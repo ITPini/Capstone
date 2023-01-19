@@ -1,16 +1,14 @@
-/**
- * @author Marcelino Patrick Pini - mpini21@student.aau.dk
- */
-
 package org.aau.pini.capstone.algorithms;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Marcelino Patrick Pini - mpini21@student.aau.dk
+ */
 class ImageAlgorithmTest {
-
-    final ImageAlgorithm imageAlgorithm = new Invert();
+    private final ImageAlgorithm imageAlgorithm = new Invert();
 
     @Test
     void testCheckFactorRange() {
@@ -48,5 +46,10 @@ class ImageAlgorithmTest {
         imageAlgorithm.setMaximumFactor(5);
         assertEquals(1, imageAlgorithm.getMinimumFactor());
         assertEquals(5, imageAlgorithm.getMaximumFactor());
+    }
+
+    @Test
+    void testGetName() {
+        assertEquals("Invert", imageAlgorithm.getName());
     }
 }
