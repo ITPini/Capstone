@@ -20,8 +20,8 @@ an image, apply an algorithm to alter the RGB values, and export the final image
 be easy to implement a wide range of algorithms in a flexible manner building on top of my source code.
 
 ## Prerequisites
-- Java >= 19
-- Maven >= 3.8.6   
+- ``Java >= 19``
+- ``Maven >= 3.8.6`` 
 
 (Has not been tested with older versions).
 
