@@ -1,7 +1,3 @@
-/**
- * @author Marcelino Patrick Pini - mpini21@student.aau.dk
- */
-
 package org.aau.pini.capstone.controllers;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -17,8 +13,9 @@ import javafx.scene.input.MouseEvent;
 import org.aau.pini.capstone.algorithms.AlgorithmLoader;
 import org.aau.pini.capstone.algorithms.ImageAlgorithm;
 import org.aau.pini.capstone.io.FileIO;
+import org.aau.pini.capstone.io.MultiThreadRender;
+import org.aau.pini.capstone.io.BufferedImageRender;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,6 +23,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Marcelino Patrick Pini - mpini21@student.aau.dk
+ */
 public class MainController implements Initializable {
     private BufferedImage bufferedImage;
     private Image image;
@@ -44,6 +44,8 @@ public class MainController implements Initializable {
     private Label heightLabel;
     @FXML
     private Label sizeLabel;
+    @FXML
+    private Label timeLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,6 +75,7 @@ public class MainController implements Initializable {
             setImage(fileIO.importImage(file));
             imageView.setImage(image);
             setMetaDataLabelText((int) image.getWidth(), (int) image.getHeight());
+            setBufferedImage(SwingFXUtils.fromFXImage(image, null));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -97,28 +100,21 @@ public class MainController implements Initializable {
 
     @FXML
     private void onApplyClick(ActionEvent event){
-        if (image == null){
-            return;
-        } else if (getSelectedAlgorithm() == null) {
+        if (image == null || getSelectedAlgorithm() == null) {
             return;
         }
-        setBufferedImage(SwingFXUtils.fromFXImage(image, null));
-
         // Apply the selected algorithm
         ImageAlgorithm imageAlgorithm = getSelectedAlgorithm();
         imageAlgorithm.setFactor((float) slider.getValue());
 
-        for (int x = 0; x < bufferedImage.getWidth(); x++) {
-            for (int y = 0; y < bufferedImage.getHeight(); y++) {
-                Color color = new Color(bufferedImage.getRGB(x, y));
+        // Render the image
+        long startTime = System.currentTimeMillis();
 
-                bufferedImage.setRGB(x, y, new Color(
-                        imageAlgorithm.calculateRed(color),
-                        imageAlgorithm.calculateGreen(color),
-                        imageAlgorithm.calculateBlue(color)
-                ).getRGB());
-            }
-        }
+        BufferedImageRender bufferedImageRender = new MultiThreadRender(imageAlgorithm, getBufferedImage(), 6);
+        setBufferedImage(bufferedImageRender.getBufferedImage());
+
+        long endTime = System.currentTimeMillis();
+        timeLabel.setText("Execution time: " + (endTime - startTime) + " ms");
 
         // Update the image view
         setImage(SwingFXUtils.toFXImage(bufferedImage, null));
@@ -137,12 +133,16 @@ public class MainController implements Initializable {
         this.bufferedImage = bufferedImage;
     }
 
+    private BufferedImage getBufferedImage() {
+        return bufferedImage;
+    }
+
     private void setImage(Image image) {
         this.image = image;
     }
 
     private void setMetaDataLabelText(int width, int height) {
-        dimensionsLabel.setText("Dimensions: " + width + "x" + height);
+        dimensionsLabel.setText("Dimensions: " + width + " x " + height);
         widthLabel.setText("Width: " + width);
         heightLabel.setText("Height: " + height);
         sizeLabel.setText("Size: " + width*height + " px");
