@@ -1,7 +1,3 @@
-/**
- * @author Marcelino Patrick Pini - mpini21@student.aau.dk
- */
-
 package org.aau.pini.capstone.io;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -13,16 +9,18 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Marcelino Patrick Pini - mpini21@student.aau.dk
+ */
 class FileIOTest {
 
     @Test
     void testImportFixedImage() {
-        FileIO fileIO = new FileIO();
         File validPngFile = new File("src/test/resources/images/4.2.07.png");
         try {
             assertTrue(validPngFile.exists());
 
-            Image image = fileIO.importImage(validPngFile);
+            Image image = new FileIO().importImage(validPngFile);
             assertNotNull(image);
             assertEquals(512, image.getWidth());
             assertEquals(512, image.getHeight());
@@ -36,6 +34,10 @@ class FileIOTest {
         File validPngFile = new File("src/this/image/doesnt/exist.png");
         try {
             assertFalse(validPngFile.exists());
+            assertThrows(Exception.class, () -> {
+                new FileIO().importImage(validPngFile);
+            });
+
         } catch (Exception e) {
             fail(e);
         }
